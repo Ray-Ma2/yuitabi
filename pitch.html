@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ピッチ | 結旅 ─ゆいたび─</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --washi:#F6F1E7; --washi-deep:#EDE4D2; --card:#FFFDF7;
+  --sumi:#26241F; --soft:#6B6354;
+  --ai:#1E3A5F; --ai-deep:#142A44;
+  --akane:#A43931; --kin:#8F7124; --kinpaku:#E8C87A;
+  --line:#DCD1B9;
+  --serif:"Shippori Mincho B1",serif;
+  --sans:"Zen Kaku Gothic New",sans-serif;
+  --num:"Fraunces",serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);color:var(--sumi);background:var(--washi);
+  font-size:16px;line-height:1.95;letter-spacing:.02em;
+  background-image:radial-gradient(rgba(38,36,31,.035) 1px,transparent 1px);
+  background-size:26px 26px;
+}
+::selection{background:var(--ai);color:#fff}
+header.site{
+  position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;
+  padding:14px clamp(20px,5vw,56px);
+  background:rgba(246,241,231,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--sumi)}
+.brand .name{font-family:var(--serif);font-weight:800;font-size:20px;letter-spacing:.18em}
+.brand .yomi{font-size:11px;color:var(--soft);letter-spacing:.3em;margin-left:2px}
+nav.doc{display:flex;gap:6px}
+nav.doc a{font-size:13px;font-weight:500;text-decoration:none;color:var(--soft);padding:7px 14px;border:1px solid transparent;border-radius:999px;transition:.25s}
+nav.doc a:hover{color:var(--ai);border-color:var(--line);background:var(--card)}
+nav.doc a.active{background:var(--ai);color:#FBF7EE;border-color:var(--ai)}
+@media(max-width:640px){nav.doc a{padding:6px 10px;font-size:12px}.brand .yomi{display:none}}
+
+/* dark hero */
+.hero{
+  background:linear-gradient(160deg,var(--ai-deep) 0%,var(--ai) 70%,#2B4E7A 100%);
+  color:#F4EEDF;position:relative;overflow:hidden;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;
+  background-image:radial-gradient(rgba(244,238,223,.05) 1px,transparent 1px);
+  background-size:22px 22px;pointer-events:none;
+}
+.hero .inner{max-width:1080px;margin:0 auto;padding:clamp(70px,11vw,130px) clamp(20px,5vw,56px) clamp(64px,9vw,110px);position:relative;z-index:1}
+.hero .tate{
+  position:absolute;right:clamp(16px,4vw,48px);top:clamp(56px,9vw,110px);
+  writing-mode:vertical-rl;font-family:var(--serif);font-size:clamp(13px,1.5vw,17px);
+  letter-spacing:.42em;color:var(--kinpaku);opacity:.85;font-weight:600;
+}
+.hero .doc-type{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.28em;color:var(--kinpaku);margin-bottom:22px}
+.hero .doc-type::before{content:"";width:34px;height:1px;background:var(--kinpaku)}
+.hero h1{font-family:var(--serif);font-weight:800;font-size:clamp(32px,5.6vw,58px);line-height:1.5;letter-spacing:.05em}
+.hero h1 .accent{color:var(--kinpaku)}
+.hero .sub{margin-top:26px;font-size:clamp(14px,1.7vw,16.5px);color:#CEC5AC;max-width:36em;line-height:2.1}
+.hero .meta{margin-top:34px;display:flex;flex-wrap:wrap;gap:8px 26px;font-size:12.5px;color:#A9A089;letter-spacing:.06em}
+.hero .meta b{color:#F4EEDF}
+
+/* elevator quote */
+.elevator{max-width:1080px;margin:clamp(-34px,-4vw,-44px) auto 0;padding:0 clamp(20px,5vw,56px);position:relative;z-index:2}
+.elevator .box{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:clamp(26px,4vw,42px);box-shadow:0 24px 50px -30px rgba(20,42,68,.45);
+}
+.elevator .label{font-family:var(--num);font-style:italic;font-size:13px;color:var(--akane);letter-spacing:.1em;margin-bottom:12px}
+.elevator p{font-family:var(--serif);font-size:clamp(15px,1.9vw,18px);line-height:2.15;font-weight:600}
+.elevator p em{font-style:normal;color:var(--akane)}
+
+main{max-width:1080px;margin:0 auto;padding:0 clamp(20px,5vw,56px) 90px}
+section{margin-top:clamp(60px,8vw,92px)}
+.sec-head{display:flex;align-items:baseline;gap:18px;border-bottom:2px solid var(--sumi);padding-bottom:12px;margin-bottom:30px}
+.sec-head .no{font-family:var(--num);font-style:italic;font-weight:300;font-size:clamp(34px,4vw,46px);color:var(--akane);line-height:1}
+.sec-head h2{font-family:var(--serif);font-weight:700;font-size:clamp(20px,2.6vw,26px);letter-spacing:.06em}
+.sec-head .en{margin-left:auto;font-family:var(--num);font-style:italic;font-size:12px;color:var(--soft);letter-spacing:.12em;white-space:nowrap}
+@media(max-width:640px){.sec-head .en{display:none}}
+p+p{margin-top:1em}
+.note{font-size:12.5px;color:var(--soft)}
+
+/* gap visual */
+.gap{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+@media(max-width:680px){.gap{grid-template-columns:1fr}}
+.gap .g{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:30px 28px;text-align:center;position:relative;overflow:hidden}
+.gap .g .pct{font-family:var(--num);font-weight:500;font-size:clamp(54px,7vw,76px);line-height:1}
+.gap .g.want .pct{color:var(--ai)}
+.gap .g.could .pct{color:var(--akane)}
+.gap .g .cap{font-size:14px;font-weight:700;margin-top:10px}
+.gap .g .sub{font-size:12px;color:var(--soft);margin-top:4px}
+.gap .g .bar{height:10px;border-radius:99px;background:var(--washi-deep);margin-top:18px;overflow:hidden}
+.gap .g .bar i{display:block;height:100%;border-radius:99px}
+.gap .g.want .bar i{width:70%;background:var(--ai)}
+.gap .g.could .bar i{width:10%;background:var(--akane)}
+.gap-note{margin-top:14px;font-size:14px}
+
+/* pillars (solution) */
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:8px}
+.pillar{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px}
+.pillar .ic{width:44px;height:44px;border-radius:10px;background:var(--washi-deep);display:grid;place-items:center;margin-bottom:14px;color:var(--ai)}
+.pillar b{display:block;font-family:var(--serif);font-size:16px;margin-bottom:6px}
+.pillar p{font-size:13px;color:var(--soft)}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:8px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 22px 18px;position:relative;overflow:hidden}
+.stat::after{content:"";position:absolute;left:0;top:0;width:4px;height:100%;background:var(--ai)}
+.stat .v{font-family:var(--num);font-weight:500;font-size:clamp(30px,3.4vw,40px);line-height:1.1;color:var(--ai-deep)}
+.stat .v small{font-size:.45em;font-family:var(--sans);font-weight:700;letter-spacing:.05em}
+.stat .l{font-size:13px;font-weight:700;margin-top:8px}
+.stat .s{font-size:11.5px;color:var(--soft);margin-top:2px;line-height:1.7}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:12px}
+table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:560px}
+thead th{background:var(--ai);color:#F4EEDF;font-weight:700;text-align:left;padding:11px 16px;letter-spacing:.05em;font-size:12.5px;white-space:nowrap}
+tbody td{padding:12px 16px;border-top:1px solid var(--line);vertical-align:top;line-height:1.8}
+tbody tr:nth-child(even){background:rgba(222,210,180,.14)}
+td.num,th.num{text-align:right;font-family:var(--num);font-weight:500;white-space:nowrap}
+tbody tr.total td{border-top:2px solid var(--sumi);font-weight:700;background:var(--washi-deep)}
+td b{color:var(--ai-deep)}
+.mark-ok{color:#2E6B4F;font-weight:700}.mark-mid{color:var(--kin);font-weight:700}.mark-ng{color:var(--akane);font-weight:700}
+
+.insight{background:var(--washi-deep);border-radius:10px;padding:22px 26px;margin:26px 0;border-left:5px solid var(--kin)}
+.insight .t{font-family:var(--serif);font-weight:700;font-size:15.5px;color:var(--kin);margin-bottom:8px}
+.insight p{font-size:14px}
+
+/* timeline */
+.mile{list-style:none;display:grid;gap:0;margin-top:8px}
+.mile li{position:relative;padding:4px 0 26px 40px}
+.mile li::before{content:"";position:absolute;left:9px;top:10px;width:10px;height:10px;background:var(--akane);transform:rotate(45deg)}
+.mile li::after{content:"";position:absolute;left:13px;top:26px;bottom:-4px;border-left:2px dashed var(--line)}
+.mile li:last-child::after{display:none}
+.mile .when{font-family:var(--num);font-style:italic;font-size:13px;color:var(--akane);letter-spacing:.06em}
+.mile b{display:block;font-family:var(--serif);font-size:15.5px;margin:2px 0 3px}
+.mile p{font-size:13px;color:var(--soft)}
+
+/* ask */
+.ask{
+  background:linear-gradient(160deg,var(--ai-deep),var(--ai));color:#F4EEDF;border-radius:14px;
+  padding:clamp(28px,5vw,46px);display:grid;grid-template-columns:auto 1fr;gap:28px 48px;align-items:center;
+  box-shadow:0 18px 40px -22px rgba(20,42,68,.55);
+}
+@media(max-width:720px){.ask{grid-template-columns:1fr}}
+.ask .amt{font-family:var(--num);font-weight:500;font-size:clamp(44px,6vw,64px);line-height:1;color:var(--kinpaku);white-space:nowrap}
+.ask .amt small{font-size:.34em;font-family:var(--sans);font-weight:700;color:#CEC5AC}
+.ask p{font-size:14px;color:#D8D0BA;line-height:2}
+.ask p b{color:#fff}
+
+/* faq accordion */
+details.faq{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-top:12px;overflow:hidden}
+details.faq summary{
+  cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:14px;
+  padding:18px 22px;font-weight:700;font-size:14.5px;line-height:1.7;
+  transition:background .2s;
+}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary:hover{background:var(--washi-deep)}
+details.faq summary .q{font-family:var(--num);font-style:italic;font-weight:500;color:var(--akane);font-size:17px;flex:none}
+details.faq summary .chev{margin-left:auto;flex:none;transition:transform .25s;color:var(--soft)}
+details.faq[open] summary .chev{transform:rotate(180deg)}
+details.faq .a{padding:2px 22px 20px 56px;font-size:13.5px;color:var(--soft);line-height:2}
+details.faq .a b{color:var(--sumi)}
+
+/* vision band */
+.vision{
+  text-align:center;padding:clamp(50px,8vw,80px) 20px;margin-top:clamp(60px,8vw,92px);
+  border-top:2px solid var(--sumi);border-bottom:2px solid var(--sumi);
+}
+.vision .small{font-family:var(--num);font-style:italic;font-size:13px;color:var(--akane);letter-spacing:.14em}
+.vision h2{font-family:var(--serif);font-weight:800;font-size:clamp(24px,4vw,40px);line-height:1.8;margin-top:16px;letter-spacing:.06em}
+.vision p{margin-top:18px;color:var(--soft);font-size:14.5px;max-width:34em;margin-inline:auto}
+
+footer{border-top:1px solid var(--line);margin-top:0;padding:34px clamp(20px,5vw,56px) 60px;max-width:1080px;margin-inline:auto;display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center}
+footer .f-note{font-size:11.5px;color:var(--soft);line-height:1.8}
+.next{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--serif);font-weight:700;color:var(--ai);font-size:15px;border-bottom:1.5px solid var(--ai);padding-bottom:2px}
+.next:hover{color:var(--akane);border-color:var(--akane)}
+@media print{header.site{position:static}body{background:#fff}.stat,.pillar,.tbl-wrap,details.faq{break-inside:avoid}details.faq{open:true}}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <a class="brand" href="pitch.html" aria-label="結旅 トップ">
+    <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="#A43931" stroke-width="2" stroke-linecap="round">
+      <path d="M16 9c-5-6-13-1-10 5 2 4 7 6 10 9 3-3 8-5 10-9 3-6-5-11-10-5z"/>
+      <path d="M16 9v14" stroke="#1E3A5F" stroke-dasharray="2 3"/>
+    </svg>
+    <span class="name">結旅</span><span class="yomi">YUITABI</span>
+  </a>
+  <nav class="doc">
+    <a href="research-report.html">市場リサーチ</a>
+    <a href="business-plan.html">事業計画</a>
+    <a href="pitch.html" class="active">ピッチ</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="inner">
+    <div class="tate">看護師と、フィルムと。</div>
+    <div class="doc-type">PITCH ─ 事業提案</div>
+    <h1>もう一度、<span class="accent">あの景色</span>へ。<br>その旅を、一本の<span class="accent">フィルム</span>に。</h1>
+    <p class="sub">結旅（ゆいたび）は、終末期・要介護の方の「もう一度行きたい」に看護師資格を持つ映像クリエイターが付き添い、旅そのものを家族が一生見返せる映像作品として残す、日本でただひとつのサービスです。</p>
+    <div class="meta">
+      <span>提案者：<b>五條 巧</b>（看護師・映像クリエイター）</span>
+      <span>2026年6月</span>
+      <span>社外秘</span>
+    </div>
+  </div>
+</div>
+
+<div class="elevator">
+  <div class="box">
+    <div class="label">── 30秒でお伝えしたいこと</div>
+    <p>日本では毎年160万人が亡くなり、723万人が要介護状態にあります。施設に入った方の7割が「もう一度旅行に行きたい」と願いながら、叶うのは1割。壁は、医療的な付き添いです。<br>私は看護師であり、映像クリエイターです。ご本人の「もう一度行きたい」に看護師として安全に付き添い、その旅をご家族が一生見返せる一本の映像作品にして納品します。<em>看護の安心と映像の感動、この2つを1人で提供できる事業者は、日本にまだいません。</em></p>
+  </div>
+</div>
+
+<main>
+
+<!-- 01 problem -->
+<section id="problem">
+  <div class="sec-head"><span class="no">01</span><h2>課題 ── 願う人は7割、叶う人は1割</h2><span class="en">PROBLEM</span></div>
+  <div class="gap">
+    <div class="g want">
+      <div class="pct">7<span style="font-size:.4em">割</span></div>
+      <div class="cap">「旅行に行きたい」</div>
+      <div class="sub">介護施設入居者の回答</div>
+      <div class="bar"><i></i></div>
+    </div>
+    <div class="g could">
+      <div class="pct">1<span style="font-size:.4em">割</span></div>
+      <div class="cap">実際に行けた人</div>
+      <div class="sub">1年以内に旅行できた人</div>
+      <div class="bar"><i></i></div>
+    </div>
+  </div>
+  <p class="gap-note">壁は3つあります。<b>① 急変への不安</b>（医療の壁）、<b>② 移動・宿泊の手間</b>（旅程の壁）、<b>③ 実現しても何も残らない</b>（記録の壁）。そしてご家族には「あの時、連れて行けばよかった」という後悔だけが残ります。葬儀には平均100万円以上が支払われる一方、<b>生きているうちの思い出</b>への選択肢は、ほとんど存在していません。</p>
+</section>
+
+<!-- 02 solution -->
+<section id="solution">
+  <div class="sec-head"><span class="no">02</span><h2>解決策 ── 3つの壁を、1つのチームで</h2><span class="en">SOLUTION</span></div>
+  <div class="pillars">
+    <div class="pillar">
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-1.5 3-3.3 3-5.5A4.5 4.5 0 0 0 17.5 4c-1.7 0-3.2.8-4.5 2.5h-2C9.7 4.8 8.2 4 6.5 4A4.5 4.5 0 0 0 2 8.5c0 2.2 1.5 4 3 5.5l7 7z"/><path d="M3.5 12h4l2-3 3 5 2-2h4"/></svg></div>
+      <b>看護師の付き添い</b>
+      <p>主治医の許可・急変時手順を事前に固め、当日は看護師が医療的に見守る。「もしも」に備えた旅にする。</p>
+    </div>
+    <div class="pillar">
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5.4 7 11.5 7.6 12a.7.7 0 0 0 .8 0c.6-.5 7.6-6.6 7.6-12a8 8 0 0 0-8-8z"/></svg></div>
+      <b>旅の組成</b>
+      <p>介護タクシー・民間救急・登録旅行業者と提携し、車椅子でもストレッチャーでも行ける旅程をつくる。</p>
+    </div>
+    <div class="pillar">
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="m17 10 5-3v10l-5-3z"/></svg></div>
+      <b>映像作品</b>
+      <p>旅のすべてをプロが撮影・編集し、10〜15分のドキュメンタリー作品として納品。家族の宝物になる。</p>
+    </div>
+  </div>
+  <div class="insight">
+    <div class="t">なぜ、私たちにしかできないのか</div>
+    <p>看護師資格と映像制作を本業レベルで両立する人材は、ほぼ存在しません。看護師だから医療現場・看取りの場に「撮影者として」入ることができます。そして<b>すでに、終末期の方の故郷への旅に同行し、映像作品として納品した実案件の経験があります</b>。これは構想ではなく、一度実現したことの事業化です。</p>
+  </div>
+</section>
+
+<!-- 03 market -->
+<section id="market">
+  <div class="sec-head"><span class="no">03</span><h2>市場 ── 確実に膨らみ、誰も統合していない</h2><span class="en">MARKET</span></div>
+  <div class="stats">
+    <div class="stat"><div class="v">160<small>万人/年</small></div><div class="l">年間死亡数</div><div class="s">2050年頃まで継続する多死社会（厚労省）</div></div>
+    <div class="stat"><div class="v">723<small>万人</small></div><div class="l">要介護・要支援認定者</div><div class="s">2025年4月時点（厚労省）</div></div>
+    <div class="stat"><div class="v">10<small>〜55万円</small></div><div class="l">終活映像の支払い実績</div><div class="s">看護師同行旅行も1泊7.5万円の実勢。お金は既に動いている</div></div>
+    <div class="stat"><div class="v">0<small>社</small></div><div class="l">看護×旅×映像の統合プレイヤー</div><div class="s">2026年6月調査時点。国内外とも完全一致は不在</div></div>
+  </div>
+  <p style="margin-top:20px">私たちは誇張しません。対象は「主治医の許可が出る体調」×「30〜80万円を払える家族」に絞られ、<b>初年度24件、3年目で年108件</b>という現実的な計画です。これは市場の大きさで勝負する事業ではなく、<b>確実な需要に高単価・少数精鋭で応えるブランド事業</b>です。</p>
+</section>
+
+<!-- 04 business model -->
+<section id="model">
+  <div class="sec-head"><span class="no">04</span><h2>ビジネスモデル</h2><span class="en">BUSINESS MODEL</span></div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>プラン</th><th>内容</th><th class="num">価格（税別）</th><th class="num">粗利率</th></tr></thead>
+    <tbody>
+      <tr><td><b>ライフヒストリーフィルム</b></td><td>外出なし。自宅・施設でのインタビュー＋ゆかりの場所の撮影</td><td class="num">18万円</td><td class="num">67%</td></tr>
+      <tr><td><b>おでかけフィルム（日帰り）</b></td><td>看護師同行8時間＋撮影・編集</td><td class="num">30万円</td><td class="num">63%</td></tr>
+      <tr><td><b>ふるさと紀行（1泊2日）</b></td><td>本格アセスメント＋看護師同行＋15分ドキュメンタリー</td><td class="num">65万円</td><td class="num">42〜69%</td></tr>
+    </tbody>
+  </table></div>
+  <ul style="list-style:none;display:grid;gap:8px;margin-top:18px">
+    <li style="padding-left:22px;position:relative;font-size:14px"><span style="position:absolute;left:4px;top:.78em;width:7px;height:7px;background:var(--ai);transform:rotate(45deg)"></span>旅行実費は家族の直接負担（旅行業法に適合するスキーム設計済み）</li>
+    <li style="padding-left:22px;position:relative;font-size:14px"><span style="position:absolute;left:4px;top:.78em;width:7px;height:7px;background:var(--ai);transform:rotate(45deg)"></span>顧客獲得は広告ではなく<b>紹介制</b>：病院の相談員・ケアマネ・訪問看護（全国18,042事業所）・介護タクシー・葬儀社</li>
+    <li style="padding-left:22px;position:relative;font-size:14px"><span style="position:absolute;left:4px;top:.78em;width:7px;height:7px;background:var(--ai);transform:rotate(45deg)"></span>損益分岐点は<b>月0.8件</b>。副業スタートで固定費を最小化し、低リスクで検証</li>
+  </ul>
+</section>
+
+<!-- 05 competition -->
+<section id="competition">
+  <div class="sec-head"><span class="no">05</span><h2>競合と堀</h2><span class="en">MOAT</span></div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th></th><th>介護旅行</th><th>自費看護</th><th>終活映像</th><th>海外Wish系</th><th style="background:var(--akane)">結旅</th></tr></thead>
+    <tbody>
+      <tr><td><b>医療的付き添い</b></td><td><span class="mark-mid">△</span></td><td><span class="mark-ok">○</span></td><td><span class="mark-ng">×</span></td><td><span class="mark-ok">○</span></td><td><span class="mark-ok">◎</span></td></tr>
+      <tr><td><b>旅の組成</b></td><td><span class="mark-ok">○</span></td><td><span class="mark-mid">△</span></td><td><span class="mark-ng">×</span></td><td><span class="mark-ok">○</span></td><td><span class="mark-ok">○</span></td></tr>
+      <tr><td><b>映像作品</b></td><td><span class="mark-ng">×</span></td><td><span class="mark-ng">×</span></td><td><span class="mark-ok">○</span></td><td><span class="mark-ng">×</span></td><td><span class="mark-ok">◎</span></td></tr>
+      <tr><td><b>収益モデル</b></td><td>営利</td><td>営利</td><td>営利</td><td>寄付</td><td><b>営利</b></td></tr>
+    </tbody>
+  </table></div>
+  <div class="insight">
+    <div class="t">世界の類似事業がすべて非営利である事実を、私たちは強みに変えます</div>
+    <p>オランダのAmbulance Wish Foundation（累計25,000件）をはじめ、海外の「最後の願い」事業はすべて寄付・ボランティア型です。彼らが提供するのは「体験」のみ。私たちは<b>「映像作品」という形に残る納品物</b>があるため、適正な対価をいただく事業として成立します。さらに、①人材の希少性 ②医療安全の標準手順・同意書・保険のノウハウ ③医療・介護職の紹介ネットワークの信用──の3つが、後発に対する堀になります。</p>
+  </div>
+</section>
+
+<!-- 06 traction / milestones -->
+<section id="traction">
+  <div class="sec-head"><span class="no">06</span><h2>実績とマイルストーン</h2><span class="en">TRACTION</span></div>
+  <ul class="mile">
+    <li>
+      <span class="when">済 ── 実案件</span>
+      <b>終末期の方の「故郷への最後の旅」に同行し、映像を納品</b>
+      <p>構想の原点であり、需要とオペレーションが実在することの証明。医療機関・宿泊施設の商業撮影実績も保有</p>
+    </li>
+    <li>
+      <span class="when">Phase 0 ── 6ヶ月</span>
+      <b>検証：紹介制で3〜5件、65万円プランの価格受容性を実証</b>
+      <p>今回の調達資金の使途。標準手順の文書化・保険と同意書の整備もここで完了</p>
+    </li>
+    <li>
+      <span class="when">Phase 1 ── 18ヶ月</span>
+      <b>確立：法人化・専業化、関西圏の紹介網、年24件</b>
+      <p>検証通過後に専業化。病院・訪問看護・介護タクシーとの提携を関西圏で確立</p>
+    </li>
+    <li>
+      <span class="when">Phase 2 ── 36ヶ月</span>
+      <b>拡張：看護師向け「認定実務者」育成を開始、年108件＋受講30名</b>
+      <p>潜在看護師70万人のセカンドキャリアの受け皿へ。審査制＋実案件供給型のスクールで全国展開</p>
+    </li>
+  </ul>
+</section>
+
+<!-- 07 financials -->
+<section id="financials">
+  <div class="sec-head"><span class="no">07</span><h2>収支計画（保守シナリオ）</h2><span class="en">FINANCIALS</span></div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th></th><th class="num">Year 1</th><th class="num">Year 2</th><th class="num">Year 3</th></tr></thead>
+    <tbody>
+      <tr><td><b>件数</b></td><td class="num">24件</td><td class="num">62件</td><td class="num">108件＋受講30名</td></tr>
+      <tr class="total"><td>売上高</td><td class="num">716万円</td><td class="num">1,920万円</td><td class="num">4,554万円</td></tr>
+      <tr class="total"><td>営業利益</td><td class="num">276万円</td><td class="num">160万円<span class="note">（代表報酬計上後）</span></td><td class="num">804万円</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note" style="margin-top:14px">価格・件数・原価の詳細な根拠は <a href="business-plan.html" style="color:var(--ai)">事業計画書</a> に記載。すべて市場の実勢価格から積み上げた保守的な計画です。</p>
+</section>
+
+<!-- 08 ask -->
+<section id="ask">
+  <div class="sec-head"><span class="no">08</span><h2>ご相談 ── 調達のお願い</h2><span class="en">THE ASK</span></div>
+  <div class="ask">
+    <div class="amt">300<small>万円</small></div>
+    <div>
+      <p><b>日本政策金融公庫・新規開業資金として300万円</b>（自己資金150万円と合わせ総額450万円）。<br>使途：運転資金180万円／保険・法務整備80万円／機材60万円／ブランド・実績映像70万円／提携開拓60万円。</p>
+      <p style="margin-top:12px">エンジェル投資の場合：＋500万円でスクール事業の前倒しと東名阪展開を加速します（Phase 0の検証データ開示後のラウンドを想定──双方にとって誠実な進め方と考えています）。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 09 faq -->
+<section id="faq">
+  <div class="sec-head"><span class="no">09</span><h2>よくいただく質問</h2><span class="en">Q&amp;A</span></div>
+
+  <details class="faq">
+    <summary><span class="q">Q1</span>旅行中に亡くなったら、責任を取れるのですか。<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+    <div class="a">主治医の外出許可がない案件はお受けしません。急変時の搬送先を事前に指定し、心肺蘇生に関するご本人・ご家族の意思を文書で確認します。事業者賠償・看護職賠償・保険外サービス拡大補償特約・国内旅行傷害保険の<b>4種の保険</b>に加入します。それでも残るリスクは「お受けしない判断」で管理します──医療者として、無理な外出を後押ししない中止基準を公開しています。</div>
+  </details>
+
+  <details class="faq">
+    <summary><span class="q">Q2</span>旅行業の登録は必要ないのですか。<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+    <div class="a">宿泊・交通の手配はご家族自身か提携する登録旅行業者が行い、当社は<b>看護同行・撮影・プロデュース費のみ</b>を請求します。スキームは弁護士・行政書士の確認を経て運用します。</div>
+  </details>
+
+  <details class="faq">
+    <summary><span class="q">Q3</span>看護師が1人で医療行為をして大丈夫なのですか。<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+    <div class="a">当日の業務は法律上の「療養上の世話」（移動介助・観察・体調相談）に限定します。痰の吸引など「診療の補助」が必要な場合は、<b>主治医の指示書と手順書がある場合のみ</b>実施します。指示系統のない医療行為は行いません。</div>
+  </details>
+
+  <details class="faq">
+    <summary><span class="q">Q4</span>65万円は高すぎませんか。<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+    <div class="a">看護師同行だけで市場相場は1泊7.5万円、終活映像だけで10〜55万円が既に支払われています。両方に事前の医療アセスメントとプロデュースを加えた統合価格として妥当です。むしろ安売りすると、安全と品質のどちらかが必ず崩れます。<b>最初の3〜5件で受容性を実証してから</b>拡大します。</div>
+  </details>
+
+  <details class="faq">
+    <summary><span class="q">Q5</span>代表が倒れたら、事業は止まるのでは。<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+    <div class="a">短期的にはその通りです。だからこそPhase 1で全工程を標準手順書に文書化し、Phase 2で看護師と撮影者の分業体制＋認定育成を始めます。<b>属人性の解消そのものを事業計画に組み込んでいます</b>。</div>
+  </details>
+
+  <details class="faq">
+    <summary><span class="q">Q6</span>海外の類似事業が全部非営利なのは、営利では成立しない証拠では。<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+    <div class="a">海外非営利は「体験」のみを無償提供しています。当事業は「映像作品」という形あるものを納品するため、対価の正当性が立ちます。国内では看護師同行・終活映像それぞれに有償の支払い実績が既にあります。成立しないのではなく、<b>誰もこの統合をやっていないだけ</b>──それをPhase 0で実証します。</div>
+  </details>
+
+  <details class="faq">
+    <summary><span class="q">Q7</span>スクールは「情報商材」にならないのですか。<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+    <div class="a">本体の実案件が10件以上できるまで開始しません。内容は動画編集ではなく<b>医療安全・倫理・同意書・急変対応</b>が中心です。修了者は審査制で、当社の実案件を紹介する「人材供給網」として設計します。受講料を主な収益にはしません。</div>
+  </details>
+
+  <details class="faq">
+    <summary><span class="q">Q8</span>「最後の旅行」を売るのは、倫理的に問題では。<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+    <div class="a">そのご懸念は正当で、当社は「人生最後」「後悔しない」等の表現を<b>広告禁止リスト</b>に入れています。チャネルは医療・介護職からの紹介が中心で、広告で需要を作る事業ではありません。語り口は一貫して「家族の意思決定を支える看護・映像サービス」です。</div>
+  </details>
+
+  <details class="faq">
+    <summary><span class="q">Q9</span>体調不良によるキャンセルだらけになりませんか。<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+    <div class="a">なる前提で設計しています。体調急変による延期は無償で何度でも。事前アセスメント費はお申し込み時に確定する<b>着手金制</b>とし、実施前の工数を回収できる構造にしています。</div>
+  </details>
+
+  <details class="faq">
+    <summary><span class="q">Q10</span>なぜ寄付モデル（NPO）にしないのですか。<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+    <div class="a">持続性のためです。寄付依存は景気と善意に左右され、看護師・クリエイターに適正な報酬を払えません。適正価格で払えるご家族から対価をいただき、将来的には収益の一部で<b>支払い困難な世帯向けの無償枠（社会貢献枠）</b>を設けることを検討しています。営利と公益の両立が長期ビジョンです。</div>
+  </details>
+</section>
+
+</main>
+
+<!-- vision -->
+<div class="vision">
+  <div class="small">VISION</div>
+  <h2>「最後だから、諦める」を、<br>この国からなくす。</h2>
+  <p>そして、潜在看護師70万人に「資格を活かす、臨床以外の道」を示すフラッグシップになる。看護師×クリエイターという掛け算は、その最初の一歩です。</p>
+</div>
+
+<footer>
+  <div class="f-note">結旅（ゆいたび）事業ピッチ資料 ドラフト<br>2026年6月13日作成｜社外秘・関係者限り｜無断転載はご遠慮ください</div>
+  <a class="next" href="research-report.html">根拠を見る：市場リサーチ報告
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+  </a>
+</footer>
+
+</body>
+</html>
